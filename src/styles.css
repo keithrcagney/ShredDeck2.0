@@ -1,0 +1,193 @@
+body {
+  margin: 0;
+  background-color: rgba(86, 79, 126, 0.4);
+}
+
+div {
+  border: 1px solid yellow;
+}
+
+h1 {
+  margin: 0;
+  padding: 2% 0 0 0;
+  text-align: center;
+  font-size: larger;
+  font-family: Arial;
+  color: whitesmoke;
+  text-shadow: 2px 2px black;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2.5%;
+  margin: 1% 10%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+/* Login and Signup Styling */
+
+.redirect_nav {
+  margin: 0 0 2%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.8em;
+}
+
+.signup_panel, .login_panel {
+  margin: 0;
+  padding: 3% 2%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  max-height: 20%;
+  max-width: 25%;
+  background-color: rgba(47, 60, 126, 1.0);
+  border: 2px solid rgba(255, 245, 238, 1.0);
+  border-radius: 15px;
+}
+
+.text_input {
+  max-width: 75%;
+  color: rgba(61, 21, 95, 1.0);
+  background-color: rgba(255, 255, 238, 1.0);
+  margin: 0 0 1%;
+}
+
+.text_input:hover {
+  background-color: rgba(255, 255, 255, 1.0);
+}
+
+.prompt {
+  text-align: center;
+  color: #fff;
+}
+
+/* Login and Signup Button Animation */
+
+.button_input {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bolder;
+  position: relative;
+  margin: 2% 0;
+  min-width: 60%;
+  min-height: 25%;
+  border: none;
+  background-color: rgba(255, 255, 255, 1.0);
+}
+
+.button_input span {
+  display: inline-block;
+  position: relative;
+  transition: 0.1s;
+}
+
+.button_input span:after {
+  content: '\000bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: all 0.1s ease 0s;
+}
+
+.button_input:hover span {
+  padding-right: 25px;
+  letter-spacing: 1px;
+  transition: all 0.1s ease 0s;
+}
+
+.button_input:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* Deck Dashboard styling */
+
+#titleField, #projectTypeField, .submit {
+  background-color: cornsilk;
+}
+
+.row {
+  border-radius: 3px;
+  background-image: url('../assets/row.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* fix rows to display w no content */
+  max-height: 33%;
+  width: 100%;
+}
+
+.rowInnerBox {
+  display: flex;
+  flex-direction: row nowrap;
+  max-width: 100%;
+  position: absolute;
+  top: 10%;
+  left: 2%;
+  max-height: 80%;
+}
+
+.deck {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  width: 20%;
+}
+
+/* Deck Accordion styling */
+
+.accordion {
+  background-color: rgba(255, 245, 238, 1.0);
+  color: rgba(47, 60, 126, 1.0);
+  cursor: pointer;
+  padding: 1em;
+  text-align: left;
+  border: 1px solid rgba(47, 60, 126, 1.0);
+  outline: none;
+  transition: 0.3s;
+}
+
+.accordion:after {
+  content: '\02795';
+  color: '#777';
+  float: right;
+  margin-left: 5px;
+}
+
+.expanded, .accordion:hover {
+  background-color: #ccc;
+}
+
+.expanded:after {
+  content: '\2796';
+}
+
+.shred_tile {
+  padding: 0 1em;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.accordion span {
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck_title {
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.deck_type {
+  font-style: italic;
+}
