@@ -41,6 +41,12 @@ const Deck = (props) => {
 
   // const date = Date.prototype.toDateString(props.created_at);
 
+  function handleSendID(e) {
+    const sendingDeck = e.target;
+    const { id } = sendingDeck;
+    return props.handleSetDeckPreview(id);
+  }
+
   const expandAccordion = (e) => {
     console.log(props);
     setExpanded(!expanded);
@@ -54,7 +60,7 @@ const Deck = (props) => {
   return (
     <div className="deck">
       <div className="edit_panel">
-        <button className="open_deck">Open</button>
+        <button id={props.deck_id} className="open_deck" onClick={(e) => handleSendID(e)}>Open</button>
         <button className="delete_deck">Delete</button>
       </div>
       <button className={accordionClass} onClick={(e) => expandAccordion(e)}>

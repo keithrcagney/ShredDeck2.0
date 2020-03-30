@@ -195,3 +195,13 @@ h1 {
 .deck_type {
   font-style: italic;
 }
+
+/* Override default button stylings */
+button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height:  1;
+  margin: 0;
+  overflow: hidden;
+  text-transform: none;
+}
