@@ -118,19 +118,18 @@ h1 {
   background-image: url('../assets/row.png');
   background-repeat: no-repeat;
   background-size: 100%;
-  /* fix rows to display w no content */
-  max-height: 33%;
-  width: 100%;
+  min-height: 30%;
+  min-width: 100%;
 }
 
 .rowInnerBox {
   display: flex;
   flex-direction: row nowrap;
-  max-width: 100%;
-  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: relative;
   top: 10%;
-  left: 2%;
-  max-height: 80%;
+  left: 0.5%;
 }
 
 .deck {
@@ -139,6 +138,7 @@ h1 {
   justify-content: flex-end;
   align-items: center;
   width: 20%;
+  text-overflow: hidden;
 }
 
 /* Deck Accordion styling */
@@ -147,8 +147,10 @@ h1 {
   background-color: rgba(255, 245, 238, 1.0);
   color: rgba(47, 60, 126, 1.0);
   cursor: pointer;
-  padding: 1em;
+  /* padding: 1em; */
   text-align: left;
+  font-size: smaller;
+  text-overflow: hidden;
   border: 1px solid rgba(47, 60, 126, 1.0);
   outline: none;
   transition: 0.3s;
@@ -175,17 +177,19 @@ h1 {
   overflow: hidden;
 }
 
-.accordion span {
+/* .accordion span {
   display: block;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: small;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
+  font-size: smaller;
+  overflow: hidden;
+} */
+
+.deck span {
+  text-overflow: hidden;
 }
 
 .deck_title {
   font-weight: bold;
-  overflow: hidden;
 }
 
 .deck_type {

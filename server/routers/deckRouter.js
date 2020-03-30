@@ -3,7 +3,7 @@ const router = express.Router();
 const authController = require('../controllers/authController.js');
 const deckController = require('../controllers/deckController.js');
 
-router.get('/', authController.cookieCheck, deckController.getDecks, (req, res) => {
+router.get('/', deckController.getDecks, (req, res) => {
   const {decks} = res.locals;
   res.json({
     decks,
@@ -11,11 +11,11 @@ router.get('/', authController.cookieCheck, deckController.getDecks, (req, res) 
   });
 });
 
-router.post('/', authController.cookieCheck, deckController.addDeck, (req, res) => {
+router.post('/', deckController.addDeck, (req, res) => {
   res.json({success: `ShredDeck created successfully.`});
 });
 
-router.delete('/', authController.cookieCheck, deckController.deleteDeck, (req, res) => {
+router.delete('/', deckController.deleteDeck, (req, res) => {
   res.json({success: `Deleted ShredDeck.`});
 });
 

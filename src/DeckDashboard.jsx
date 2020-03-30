@@ -8,6 +8,8 @@ const DeckDashboard = () => {
   const [edits, setEdits] = useState(false);
 
   useEffect(() => {
+    if (isFetching) return;
+    
     let isFetching = true;
     fetch('/deck', {
       method: 'GET',

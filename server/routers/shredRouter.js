@@ -5,25 +5,34 @@ const shredController = require('../controllers/shredController.js');
 
 router.use('*', authController.cookieCheck);
 
-router.get('/', authController.cookieCheck, shredController.getShreds, (req, res) => {
-  const {shreds} = res.locals;
-  res.status(200).json(data);
+router.get('/', shredController.getShreds, (req, res) => {
+  const { shreds } = res.locals;
+  res.json({
+    shreds,
+    status: "success"
+  });
 });
 
-router.post('/', authController.cookieCheck, shredController.addShred, (req, res) => {
-  res.status(200).json({success: `Shred added successfully.`});
+router.post('/', shredController.addShred, (req, res) => {
+  console.log('shredRouter: POST');
+  res.json({status: "success"});
 });
 
-router.put('/', authController.cookieCheck, shredController.editShred, (req, res) => {
-  res.status(200).json({success: `Updated shred.`})
+router.put('/', shredController.editShred, (req, res) => {
+  console.log('shredRouter: PUT');
+  res.json({status: "success"});
 })
 
-router.patch('/', authController.cookieCheck, shredController.completeShred, (req, res) => {
-  res.status(200).json({success: `Shred completed.`});
+router.patch('/', shredController.completeShred, (req, res) => {
+  console.log('shredRouter: PATCH');
+  res.json({status: "success"});
 })
 
-router.delete('/', authController.cookieCheck, shredController.deleteShred, (req, res) => {
-  res.status(200).json({success: `Deleted shred.`});
+router.delete('/', shredController.deleteShred, (req, res) => {
+  console.log('shredRouter: DELETE');
+
+  //@TODO = implement a delete stack server-side
+  res.json({status: "success"});
 });
 
 module.exports = router;

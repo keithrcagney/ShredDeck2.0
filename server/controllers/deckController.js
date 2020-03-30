@@ -2,10 +2,8 @@ const db = require('../models/dev.postgresDB.js');
 const deckController = {};
 
 deckController.getDecks = (req, res, next) => {
-  
-  // use parameterized queries to inure against dB attack
-  const { userkey } = res.locals;
-  const values = [userkey];
+  const { uid } = res.locals;
+  const values = [uid];
   const getDecksQuery = "SELECT * FROM Decks WHERE user_id=$1";
 
   db.query(getDecksQuery, values, (err, result) => {
@@ -22,11 +20,9 @@ deckController.getDecks = (req, res, next) => {
 };
 
 deckController.addDeck = (req, res, next) => {
-
-  // use parameterized queries to inure against dB attack
-  const { userkey } = res.locals;
+  const { uid } = res.locals;
   const {title, project_type } = req.body;
-  const values = [userkey, title, project_type];
+  const values = [uid, title, project_type];
   const insertDeckQuery = 'INSERT INTO Decks(user_id, title, project_type) VALUES($1, $2, $3) RETURNING *';
 
   db.query(insertDeckQuery, values, (err, result) => {
@@ -43,11 +39,9 @@ deckController.addDeck = (req, res, next) => {
 };
 
 deckController.deleteDeck = (req, res, next) => {
-
-  // use parameterized queries to inure against dB attack
-  const { userkey } = res.locals;
+  const { uid } = res.locals;
   const { _id } = req.body;
-  const values = [ _id, userkey];
+  const values = [ _id, uid];
   const deleteQuery = `DELETE FROM Decks WHERE _id=$1 && user_id=$2`;
   
   db.query(deleteQuery, values, (err, result) => {

@@ -25,6 +25,7 @@ const HTML_FILE = path.resolve(DIST_DIR, 'index.html');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(authController.cookieCheck);
 
 // determines webpack compiler option from NODE_ENV variable
 // also dynamically creates necessary dev databases if purged
@@ -38,28 +39,20 @@ if (devMode) {
 
   app.use(webpackHotMiddleware(compiler));
 
-  app.get('/', authController.cookieCheck, (req, res, next) => {
-    if (req.cookies.token) {
-      res.redirect('/deckDash');
-    } else {
-      compiler
-        .outputFileSystem
-        .readFile(HTML_FILE, (err, result) => {
-          if (err) {
-            return next(err);
-          }
-          res.set('content-type', 'text/html');
-          res.send(result);
-      });
-    }
+  app.get('/', (req, res, next) => {
+    compiler
+    .outputFileSystem
+    .readFile(HTML_FILE, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.set('content-type', 'text/html');
+      res.send(result);
+    });
   });
 } else {
-  app.get('/', authController.cookieCheck, (req, res, next) => {
-    if (req.cookies.token){
-      res.redirect('/deckDash');
-    } else {
-      res.sendFile(HTML_FILE);
-    }
+  app.get('/', (req, res, next) => {
+    res.sendFile(HTML_FILE);
   })
 }
 
@@ -68,7 +61,7 @@ app.use(express.static(DIST_DIR));
 
 //handle signup and login events from root page
 app.post('/signup', authController.signupUser, (req, res, next) => {
-  if (res.locals.redirect){
+  if (res.locals.redirect) {
     res.json({
       status: "redirect",
       body: res.locals.redirect
@@ -89,7 +82,7 @@ app.post('/login', authController.loginUser, (req, res, next) => {
 })
 
 //handle basic access to the deckDash page upon authentication
-app.get('/deckDash', authController.cookieCheck, (req, res, next) => {
+app.get('/deckDash', (req, res, next) => {
   if (req.cookies.token) {
     res.json({ status: "success" })
   } else {

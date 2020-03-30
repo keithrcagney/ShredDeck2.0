@@ -60,6 +60,7 @@ authController.signupUser = (req, res, next) => {
 };
 
 authController.loginUser = (req, res, next) => {
+
   const { email, password } = req.body;
   const values = [email];
   const loginQuery = "SELECT _id, password FROM Users WHERE email=$1";
@@ -98,9 +99,16 @@ authController.loginUser = (req, res, next) => {
 };
 
 authController.cookieCheck = (req, res, next) => {
+
+  const clearTokenAndNext = () => {
+    res.clearCookie("token");
+    next();
+  }
+
   const { token } = req.cookies;
+  
   if (!token) {
-    return res.status(401).send(`You must be signed in to view this page`);
+    return clearTokenAndNext();
   } else {
     jwt.verify(token, secret, (err, decoded) => {
       if (err){
@@ -111,7 +119,7 @@ authController.cookieCheck = (req, res, next) => {
       } else {
         console.log(decoded);
         const { _id } = decoded;
-        res.locals.userkey = _id;
+        res.locals.uid = _id;
         next();
       }
     });
