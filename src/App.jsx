@@ -21,7 +21,7 @@ const App = () => {
 
       <Switch>
         <Route path="/signup" exact>
-          <Signup/>
+          <Signup />
         </Route>
           
         <Route path ="/deckDash">
@@ -37,9 +37,9 @@ const App = () => {
 
 render(<App />, document.querySelector('#root'));
 
-if (module.hot){
+if (module.hot) {
   module.hot.accept(
-    './App.jsx',
-    (err) => {console.error(err)
-  });
+    ["./styles.css", "./Login.jsx", "./Signup.jsx", "./PrivateRoute.jsx", "./DeckDashboard.jsx", "./Deck.jsx"], function(){
+      render(<App />, document.querySelector('#root'));
+    }); 
 }

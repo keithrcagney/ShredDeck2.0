@@ -14,8 +14,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.css$/i,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: process.env.NODE_ENV === 'development',
+            reloadAll: true
+          },
+         }, 'css-loader'],
       },
       {
         test: /\.(js|jsx)$/,
@@ -39,11 +45,13 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Tic-Tac-Toe REST AI',
       template: './src/index.html',
       filename: './index.html',
     }),
     new ManifestPlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
   ],
 };

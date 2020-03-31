@@ -25,7 +25,6 @@ const HTML_FILE = path.resolve(DIST_DIR, 'index.html');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(authController.cookieCheck);
 
 // determines webpack compiler option from NODE_ENV variable
 // also dynamically creates necessary dev databases if purged
@@ -58,6 +57,8 @@ if (devMode) {
 
 //serve static assets from dist folder
 app.use(express.static(DIST_DIR));
+
+app.use(authController.cookieCheck);
 
 //handle signup and login events from root page
 app.post('/signup', authController.signupUser, (req, res, next) => {
