@@ -5,7 +5,7 @@ const shredController = require('../controllers/shredController.js');
 
 router.use('*', authController.cookieCheck);
 
-router.get('/', shredController.getShreds, (req, res) => {
+router.post('/get', shredController.getShreds, (req, res) => {
   const { shreds } = res.locals;
   res.json({
     shreds,

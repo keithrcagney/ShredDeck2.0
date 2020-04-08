@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "file-loader": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "pg": "^7.18.2",
     "postcss-loader": "^3.0.0",

@@ -4,10 +4,10 @@ const shredController = {};
 
 shredController.getShreds = (req, res, next) => {
   //PostgreSQL parameterized queries inure against dB attack
-  const { uid } = res.locals;
-  console.log(`User id passed to get Shreds: ${uid}`);
-  const getShredsQuery = "SELECT * FROM Shreds WHERE user_id=$1";
-  const values = [uid];
+  const { deck_id } = req.body;
+  const values = [deck_id];
+  console.log(`Deck id passed to get Shreds: ${deck_id}`);
+  const getShredsQuery = "SELECT * FROM Shreds WHERE deck_id=$1";
 
   db.query(getShredsQuery, values, (err, result) => {
     if (err){

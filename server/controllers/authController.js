@@ -6,6 +6,7 @@ const authController = {};
 const secret = 'example secret';
 
 authController.signupUser = (req, res, next) => {
+  console.log('Signing up');
   const { email, first_name, last_name, password } = req.body;
 
   // first check if user exists to redirect to login route
@@ -60,7 +61,7 @@ authController.signupUser = (req, res, next) => {
 };
 
 authController.loginUser = (req, res, next) => {
-
+  console.log('Logging in');
   const { email, password } = req.body;
   const values = [email];
   const loginQuery = "SELECT _id, password FROM Users WHERE email=$1";

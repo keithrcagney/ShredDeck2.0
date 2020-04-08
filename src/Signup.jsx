@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Signup = (props) => {
   const [noInput, setNoInput] = useState(false);
@@ -97,9 +97,6 @@ const Signup = (props) => {
         <Redirect to="/deckDash"/>
       ) : (
         <div className="container">
-          <nav className="redirect_nav">
-            <Link to="/">Log in</Link>
-          </nav>
           <div className="signup_panel">
             <input className="text_input" id="first_name" type="text" placeholder="first name" onChange={handleTypeAfterPrompt}></input>
             <input className="text_input" id="last_name" type="text" placeholder="surname" onChange={handleTypeAfterPrompt}></input>
@@ -108,6 +105,9 @@ const Signup = (props) => {
             <button className="button_input" onClick={handleClick}><span>Sign up</span></button>
           </div>
           <div id="user_prompt"></div>
+          <nav className="redirect_nav">
+            <Link to="/">Already signed up? Please log in.</Link>
+          </nav>
         </div>
       )}
     </>

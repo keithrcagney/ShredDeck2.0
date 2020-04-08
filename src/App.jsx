@@ -1,12 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import './styles.css';
+import './style.css';
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import PrivateRoute from './PrivateRoute.jsx';
-import DeckDashboard from './DeckDashboard.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 
@@ -39,7 +38,7 @@ render(<App />, document.querySelector('#root'));
 
 if (module.hot) {
   module.hot.accept(
-    ["./styles.css", "./Login.jsx", "./Signup.jsx", "./PrivateRoute.jsx", "./DeckDashboard.jsx", "./Deck.jsx"], function(){
+    ["./style.css", "./Login.jsx", "./Signup.jsx", "./PrivateRoute.jsx", "./DeckDashboard.jsx", "./Deck.jsx"], function(){
       render(<App />, document.querySelector('#root'));
     }); 
 }

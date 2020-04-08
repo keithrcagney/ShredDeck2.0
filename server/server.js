@@ -114,7 +114,7 @@ app.listen(PORT, () => {
 
 if (module.hot){
   module.hot.accept(
-    './server.js',
+    ['./server.js', './controllers/authController.js', './controllers.dbController.js', './controllers/deckController.js', './controllers/shredController.js', './routers/deckRouter.js', './routers/shredRouter.js'],
     (err) => console.error(err)
   );
 }

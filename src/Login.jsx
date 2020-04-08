@@ -1,19 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Login = () => {
   const [noInput, setNoInput] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const promptArea = document.getElementById("user_prompt");
-    if (noInput === true){ 
-      const prompt = document.createElement("p");
-      prompt.className = "prompt";
-      prompt.innerHTML = "Please fill out all fields to log in.";
-      promptArea.appendChild(prompt);
+    if (document.cookie.token){
+      return setIsLoggedIn(true);
+    } else {
+      const promptArea = document.getElementById("user_prompt");
+      if (noInput === true) { 
+        const prompt = document.createElement("p");
+        prompt.className = "prompt";
+        prompt.innerHTML = "Please fill out all fields to log in.";
+        promptArea.appendChild(prompt);
+      }
     }
   }, [noInput])
+
+  const checkToken = () => {
+    useEffect(() => {
+      if (document.cookie.token){
+        return () => {
+          setIsLoggedIn(true);
+          return true;
+        }
+      } else {
+        return false;
+      }
+    })
+  }
 
   const handleTypeAfterPrompt = () => {
     if (noInput === true){
@@ -48,6 +65,7 @@ const Login = () => {
       password
     }
 
+    console.log('Handling click');
     fetch("/login", {
       method: "POST",
       mode: "cors",
@@ -79,15 +97,15 @@ const Login = () => {
       <Redirect to="/deckDash"/>
     ) : (
         <div className="container">
-          <nav className="redirect_nav">
-            <Link to="/signup">Sign up</Link>
-          </nav>
           <div className="login_panel">
             <input className="text_input" id="emailField" type="text" placeholder="e-mail" onChange={handleTypeAfterPrompt}></input>
             <input className="text_input" id="passwordField" type="password" placeholder="password" onChange={handleTypeAfterPrompt}></input>
             <button className="button_input" onClick={handleClick}><span>Log in</span></button>
           </div>
           <div id="user_prompt"></div>
+          <nav className="redirect_nav">
+            <Link to="/signup">I want to sign up instead.</Link>
+          </nav>
         </div>
       )
     }

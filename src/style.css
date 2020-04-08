@@ -7,9 +7,9 @@ h1 {
   margin: 0;
   padding: 2% 0 0 0;
   text-align: center;
-  font-size: large;
-  font-weight: 800;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 3em;
+  font-weight: 400;
+  font-family: "Lobster", sans-serif;
   color: rgba(245,245,245, 1.0);
   text-shadow: 2px 2px rgba(0,0,0,0.8);
 }
@@ -25,18 +25,27 @@ h1 {
   border: 1px solid black;
 }
 
+/* Override default button and input stylings */
+button, input {
+  font-family: inherit;
+  font-size: 100%;
+  line-height:  1.5;
+  margin: 0;
+  overflow: hidden;
+  text-transform: none;
+}
+
 /* Login and Signup Styling */
 
 .redirect_nav {
-  margin: 0 0 2%;
+  margin: 2% 0 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 0.8em;
+  font-size: 0.6em;
 }
 
 .redirect_nav a {
   color: rgba(245,245,245, 1.0);
   text-decoration: none;
-  text-transform: lowercase;
 }
 
 .redirect_nav a:hover {
@@ -44,15 +53,15 @@ h1 {
 }
 
 .signup_panel, .login_panel {
-  margin: 0;
+  margin: 5% 0 0;
   padding: 3% 2%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  max-height: 20%;
-  max-width: 25%;
+  font-family: 'Gotu', sans-serif;
+  height: 20%;
+  width: 20%;
   background-color: rgba(47, 60, 126, 1.0);
   border: 2px solid rgba(255, 245, 238, 1.0);
   border-radius: 15px;
@@ -63,13 +72,15 @@ h1 {
   color: rgba(61, 21, 95, 1.0);
   background-color: rgba(255, 255, 238, 1.0);
   margin: 0 0 1%;
+  border: none;
 }
 
 .text_input:hover {
-  background-color: rgba(255, 255, 255, 1.0);
+  background-color: rgb(225, 212, 241);
 }
 
 .prompt {
+  margin: 2% 0 2%;
   text-align: center;
   color: #fff;
 }
@@ -77,9 +88,8 @@ h1 {
 /* Login and Signup Button Animation */
 
 .button_input {
-  text-transform: uppercase;
   text-decoration: none;
-  font-weight: bolder;
+  font-weight: 700;
   position: relative;
   margin: 2% 0;
   min-width: 60%;
@@ -90,6 +100,7 @@ h1 {
 
 .button_input span {
   display: inline-block;
+  padding: 1% 0 0;
   position: relative;
   transition: 0.1s;
 }
@@ -104,6 +115,7 @@ h1 {
 }
 
 .button_input:hover span {
+  padding-top: 1%;
   padding-right: 25px;
   letter-spacing: 1px;
   transition: all 0.1s ease 0s;
@@ -121,22 +133,14 @@ h1 {
 }
 
 .row {
+  display: flex;
+  flex-flow: row nowrap;
   border-radius: 3px;
-  background-image: url('../assets/row.png');
+  background-image: linear-gradient(to right,  rgba(47, 60, 126, 1.0),  rgb(7, 67, 134, 0.8));
   background-repeat: no-repeat;
   background-size: 100%;
-  min-height: 30%;
-  min-width: 100%;
-}
-
-.rowInnerBox {
-  display: flex;
-  flex-direction: row nowrap;
+  height: 30%;
   width: 100%;
-  height: 100%;
-  position: relative;
-  top: 10%;
-  left: 0.5%;
 }
 
 .deck {
@@ -145,19 +149,20 @@ h1 {
   justify-content: flex-end;
   align-items: center;
   width: 20%;
-  text-overflow: hidden;
+  border-radius: 5px;
 }
 
 /* Deck Accordion styling */
 
 .accordion {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 245, 238, 1.0);
   color: rgba(47, 60, 126, 1.0);
   cursor: pointer;
-  /* padding: 1em; */
-  text-align: left;
-  font-size: smaller;
-  text-overflow: hidden;
+  width: 100%;
   border: 1px solid rgba(47, 60, 126, 1.0);
   outline: none;
   transition: 0.3s;
@@ -166,7 +171,8 @@ h1 {
 .accordion:after {
   content: '\02795';
   color: '#777';
-  float: right;
+  justify-self: flex-end;
+  align-self: flex-end;
   margin-left: 5px;
 }
 
@@ -178,37 +184,46 @@ h1 {
   content: '\2796';
 }
 
-.shred_tile {
-  padding: 0 1em;
-  background-color: #fff;
-  overflow: hidden;
-}
-
-/* .accordion span {
-  display: block;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: smaller;
-  overflow: hidden;
-} */
-
-.deck span {
-  text-overflow: hidden;
+.accordion p {
+  text-overflow: clip;
+  margin: 0;
+  min-width: 50%;
 }
 
 .deck_title {
-  font-weight: bold;
+  font-weight: 700;
+  font-size: large;
 }
 
 .deck_type {
   font-style: italic;
 }
 
-/* Override default button stylings */
-button {
-  font-family: inherit;
-  font-size: 100%;
-  line-height:  1;
-  margin: 0;
-  overflow: hidden;
-  text-transform: none;
+/* Deck edit panel styling */
+
+.edit_panel {
+  height: 25%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.open_deck, .delete_deck {
+  line-height: 1.5;
+  border-radius: 2px;
+  background-color:  rgba(47, 60, 126, 1.0);
+  color: #fff;
+}
+
+/* Shred preview tile styling */
+.shred_tile {
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
+.shred_tile_preview {
+  float: left;
 }

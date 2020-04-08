@@ -39,11 +39,10 @@ deckController.addDeck = (req, res, next) => {
 };
 
 deckController.deleteDeck = (req, res, next) => {
-  const { uid } = res.locals;
   const { _id } = req.body;
-  const values = [ _id, uid];
-  const deleteQuery = `DELETE FROM Decks WHERE _id=$1 && user_id=$2`;
-  
+  const values = [ _id];
+  const deleteQuery = `DELETE FROM Decks WHERE _id=$1`;
+  console.log('Inside delete deck');
   db.query(deleteQuery, values, (err, result) => {
     if (err){
       return next({
